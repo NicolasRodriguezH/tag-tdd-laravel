@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +8,13 @@
 </head>
 <body class="bg-black py-10">
     <div class="max-w-lg bg-white mx-auto p-5 rounded shadow">
+        @if ($errors->any())
+            <ul class="list-none p-4 mb-4 bg-red-100 text-red-500">
+                @foreach ($errors->all() as $error)
+                    <li> {{$error}} </li>
+                @endforeach
+            </ul>
+        @endif
         <form action="tags" method="post" class="flex mb-4">
             @csrf
             <input type="text" name="name" id="" class="rounded-l bg-gray-200 p-4 w-full outline-none"
