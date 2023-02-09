@@ -35,6 +35,10 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        // Para que pasara el test tuve que crear la validacion al momento de crear una etiqueta
+        $request->validate([
+            'name' => 'required'
+        ]);
         Tag::create($request->all());
 
         return redirect('/');
@@ -80,8 +84,10 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect('/');
     }
 }
